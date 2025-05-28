@@ -2,7 +2,6 @@ import io
 import json
 import multiprocessing
 import os
-import pwd
 import shutil
 import subprocess
 import sys
@@ -310,6 +309,8 @@ class Agent(object):
         try:
             # switch to user env.agent_runner_user
             if agent_runner_user:  # noqa: D203,D211,D212,D213
+                import pwd
+        
                 user_info = pwd.getpwnam(agent_runner_user)
                 os.setgid(user_info.pw_gid)
                 os.setuid(user_info.pw_uid)
