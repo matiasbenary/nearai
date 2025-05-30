@@ -693,7 +693,8 @@ export const AgentRunner = ({
       showLogs
         ? files.outputs
         : files.outputs.filter((file) => !DEBUG_FILES.includes(file.filename)),
-    [showLogs, files.outputs],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [showLogs, files.outputs.length],
   );
 
   if (!currentEntry) {
