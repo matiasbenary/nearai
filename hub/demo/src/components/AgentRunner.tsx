@@ -688,13 +688,18 @@ export const AgentRunner = ({
     };
   }, [chatMutation.mutateAsync, setAddMessage]);
 
+  const outputFiles = useMemo(
+    () =>
+      showLogs
+        ? files.outputs
+        : files.outputs.filter((file) => !DEBUG_FILES.includes(file.filename)),
+    [showLogs, files.outputs],
+  );
+
   if (!currentEntry) {
     if (showLoadingPlaceholder) return <PlaceholderSection />;
     return null;
   }
-  const outputFiles = showLogs
-    ? files.outputs
-    : files.outputs.filter((file) => !DEBUG_FILES.includes(file.filename));
 
   return (
     <>
